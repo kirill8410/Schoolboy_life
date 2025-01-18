@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class StakanWater : MonoBehaviour
@@ -7,6 +8,7 @@ public class StakanWater : MonoBehaviour
     [SerializeField] GameObject water_part;
     [SerializeField] GameObject water_ist;
     [SerializeField] GameObject water_;
+    [SerializeField] int _type = 0;
     bool wat;
 
     void Update()
@@ -15,7 +17,10 @@ public class StakanWater : MonoBehaviour
         {
             water_part.SetActive(true);
             water -= 10 * Time.deltaTime;
-            water_.transform.localScale = new Vector3((65 + 35 * water / 100) / 100, water / 100, (65 + 35 * water / 100) / 100);
+            if (_type == 0)
+            {
+                water_.transform.localScale = new Vector3((65 + 35 * water / 100) / 100, water / 100, (65 + 35 * water / 100) / 100);
+            }
         }
         else
         {
@@ -33,7 +38,11 @@ public class StakanWater : MonoBehaviour
         {
             water = 0;
         }
-        water_.transform.localScale = new Vector3((65 + 35 * water / 100) / 100, water / 100, (65 + 35 * water / 100) / 100);
+        if (_type== 0)
+        {
+            water_.transform.localScale = new Vector3((65 + 35 * water / 100) / 100, water / 100, (65 + 35 * water / 100) / 100);
+        }
+        
     }
     private void OnTriggerEnter(Collider other)
     {
