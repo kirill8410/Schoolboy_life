@@ -1,5 +1,5 @@
 using TMPro;
-using UnityEditor.Experimental.GraphView;
+using UnityEditor;
 using UnityEngine;
 
 public class QuestManager : MonoBehaviour
@@ -9,10 +9,23 @@ public class QuestManager : MonoBehaviour
 
     private void Start()
     {
-        foreach (Quest quest in quests)
+        Quest[] q = Resources.LoadAll<Quest>("SO");
+        foreach (Quest quest in q)
         {
             quest.isComplite = false;
         }
     }
 
+    public void AddQuest(Quest quest)
+    {
+        for(int i = 0; i < quests.Length; i++)
+        {
+            if (quests[i] == null)
+            {
+                quests[i] = quest;
+
+                break;
+            }
+        }
+    }
 }

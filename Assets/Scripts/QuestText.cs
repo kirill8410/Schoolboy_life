@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class QuestText : MonoBehaviour
 {
-    private bool _isActive;
     private Quest _quest;
     [SerializeField] private SpriteRenderer _circle;
     [SerializeField] private TextMeshProUGUI _text;
@@ -15,17 +14,7 @@ public class QuestText : MonoBehaviour
 
     public void ChangeActive()
     {
-        if (!_isActive)
-        {
-            _isActive = true;
-            _circle.color = new Color(180 / 255, 1, 180 / 255);
-        }
-        else
-        {
-            _isActive = false;
-            _circle.color = new Color(180 / 255, 0, 0);
-        }
-
+        _circle.color = new Color(180 / 255, 1, 180 / 255);
     }
 
 
