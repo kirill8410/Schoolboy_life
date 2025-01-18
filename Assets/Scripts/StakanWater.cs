@@ -11,7 +11,7 @@ public class StakanWater : MonoBehaviour
 
     void Update()
     {
-        if (this.transform.rotation.x > 0.5f && water > 0 || this.transform.rotation.x > 0.5f&&water>0)
+        if (this.transform.rotation.x > 0.5f && water > 0 || this.transform.rotation.x < -0.5f&&water>0|| this.transform.rotation.z > 0.5f && water > 0 || this.transform.rotation.z < -0.5f && water > 0)
         {
             water_part.SetActive(true);
             water -= 10 * Time.deltaTime;
