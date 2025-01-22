@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class QuestText : MonoBehaviour
 {
-    private Quest _quest;
+    public Quest _quest;
     [SerializeField] private SpriteRenderer _circle;
     [SerializeField] private TextMeshProUGUI _text;
 
