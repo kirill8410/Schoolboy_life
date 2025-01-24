@@ -924,15 +924,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "AButton",
-                    "type": "Button",
-                    "id": "f6564329-855e-48d0-bc20-3c7e5b08de5b",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1131,17 +1122,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Point",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "09c6f111-403d-49cb-85b0-44fc3b50adac",
-                    "path": "<XRController>{RightHand}/{PrimaryButton}",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "AButton",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
