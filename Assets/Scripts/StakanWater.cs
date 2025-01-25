@@ -8,7 +8,7 @@ public class StakanWater : MonoBehaviour
     [SerializeField] GameObject water_part;
     [SerializeField] GameObject water_ist;
     [SerializeField] GameObject water_;
-    [SerializeField] int _type = 0;
+    [SerializeField] int _type;
     bool wat;
 
     void Update()
@@ -21,12 +21,16 @@ public class StakanWater : MonoBehaviour
             {
                 water_.transform.localScale = new Vector3((65 + 35 * water / 100) / 100, water / 100, (65 + 35 * water / 100) / 100);
             }
+            if (_type == 1)
+            {
+                water_.transform.localScale = new Vector3(1, water / 100, 1);
+            }
         }
         else
         {
             water_part.SetActive(false);
         }
-        if (water_ist.tag == "water"&&water<100f)
+        if ((water_ist.tag == "water"&&water<100f)||( water_ist.tag == "dogm" && water < 100f))
         {
             water += 10*Time.deltaTime;
         }
@@ -42,11 +46,15 @@ public class StakanWater : MonoBehaviour
         {
             water_.transform.localScale = new Vector3((65 + 35 * water / 100) / 100, water / 100, (65 + 35 * water / 100) / 100);
         }
-        
+        if (_type == 1)
+        {
+            water_.transform.localScale = new Vector3(1, water / 100, 1);
+        }
+
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "water")
+        if (other.tag == "water"|| other.tag == "dogm")
         {
             water_ist = other.gameObject;
         }
@@ -54,7 +62,7 @@ public class StakanWater : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "water")
+        if (other.tag == "water" || other.tag == "dogm")
         {
             water_ist = null;
         }
