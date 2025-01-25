@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class QuestManager : MonoBehaviour
     public Quest[] quests = new Quest[4];
     public QuestText[] questText = new QuestText[4];
     [SerializeField] GameObject _questPrefab;
+    [SerializeField] Transform _c;
     private GameObject _canvas;
     [SerializeField] GameObject _camera;
     [SerializeField] private InputActionProperty _aButton;
@@ -15,25 +17,21 @@ public class QuestManager : MonoBehaviour
     private void Start()
     {
         _canvas = GetComponentInChildren<Canvas>().gameObject;
-        _canvas.GetComponent<Canvas>().enabled = false;
+        _canvas.SetActive(false);
         Quest[] q = Resources.LoadAll<Quest>("SO");
         foreach (Quest quest in q)
         {
             quest.isComplite = false;
         }
         AddQuest(Resources.Load<Quest>("SO/Quest1"));
+        StartCoroutine(AButton());
     }
     private void Update()
     {
-        if (_aButton.action.IsPressed())
+        if (_canvas.active)
         {
-            _canvas.GetComponent<Canvas>().enabled = !_canvas.GetComponent<Canvas>().enabled;
-        }
-        if (_canvas.GetComponent<Canvas>().enabled)
-        {
-            _canvas.transform.position = new Vector3(
-                _camera.transform.position.x, _camera.transform.position.y, _camera.transform.position.z + 1.6f
-                );
+            _c.transform.position = _camera.transform.position;
+            _c.transform.rotation = _camera.transform.rotation;
         }
     }
 
@@ -57,5 +55,26 @@ public class QuestManager : MonoBehaviour
     {
         questText[questNumber].ChangeActive();
         quests[questNumber].isComplite = true;
+    }
+
+    IEnumerator AButton()
+    {
+        while (true)
+        {
+            if (_aButton.action.IsInProgress())
+            {
+                if (!_canvas.active)
+                {
+                    _canvas.SetActive(true);
+                    yield return new WaitForSeconds(3f);
+                }
+                else
+                {
+                    _canvas.SetActive(false);
+                    yield return new WaitForSeconds(3f);
+                }
+            }
+            yield return null;
+        }
     }
 }
