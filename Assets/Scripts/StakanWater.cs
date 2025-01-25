@@ -8,9 +8,15 @@ public class StakanWater : MonoBehaviour
     [SerializeField] GameObject water_part;
     [SerializeField] GameObject water_ist;
     [SerializeField] GameObject water_;
+    [SerializeField] GameObject water_col;
     [SerializeField] int _type;
+    [SerializeField] GameObject TargetObj;
+    private QuestManager _actionTarget; //замени SomeMonoBehavior  на название скрипта
     bool wat;
-
+    public void Start()
+    {
+        _actionTarget = TargetObj.GetComponent<QuestManager>();
+    }
     void Update()
     {
         if (this.transform.rotation.x > 0.5f && water > 0 || this.transform.rotation.x < -0.5f&&water>0|| this.transform.rotation.z > 0.5f && water > 0 || this.transform.rotation.z < -0.5f && water > 0)
@@ -25,6 +31,7 @@ public class StakanWater : MonoBehaviour
             {
                 water_.transform.localScale = new Vector3(1, water / 100, 1);
             }
+            
         }
         else
         {
@@ -49,6 +56,10 @@ public class StakanWater : MonoBehaviour
         if (_type == 1)
         {
             water_.transform.localScale = new Vector3(1, water / 100, 1);
+        }
+        if (_type == 1&& water == 100)
+        {
+            _actionTarget.CompiteQuest(2);
         }
 
     }
