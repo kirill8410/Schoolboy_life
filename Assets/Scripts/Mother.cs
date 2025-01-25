@@ -13,8 +13,6 @@ public class Mother : MonoBehaviour
     {
         _NC = GetComponentInChildren<NPCConversation>();
         _QM = FindFirstObjectByType<QuestManager>();
-        _NF = GameObject.FindObjectsByType<NearFarInteractor>(FindObjectsSortMode.None);
-        _NF[0].enableFarCasting = true;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -23,12 +21,11 @@ public class Mother : MonoBehaviour
         {
             if (Resources.Load<Quest>("SO/Quest1").isComplite)
             {
-                print(_NF.Length);
+                _NF = GameObject.FindObjectsByType<NearFarInteractor>(FindObjectsSortMode.None);
                 foreach (NearFarInteractor N in _NF)
                 {
                     N.enableFarCasting = true;
                 }
-                
                 ConversationManager.Instance.StartConversation(_NC);
             }
         }
@@ -38,7 +35,6 @@ public class Mother : MonoBehaviour
     {
         _QM.AddQuest(Resources.Load<Quest>("SO/Quest2"));
         _QM.AddQuest(Resources.Load<Quest>("SO/Quest3"));
-        _QM.AddQuest(Resources.Load<Quest>("SO/Quest4"));
         foreach (NearFarInteractor N in _NF)
         {
             N.enableFarCasting = false;

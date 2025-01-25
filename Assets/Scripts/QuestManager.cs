@@ -1,8 +1,10 @@
 using System.Collections;
+using System.Diagnostics.Tracing;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class QuestManager : MonoBehaviour
 {
@@ -25,6 +27,7 @@ public class QuestManager : MonoBehaviour
         }
         AddQuest(Resources.Load<Quest>("SO/Quest1"));
         StartCoroutine(AButton());
+        StartCoroutine(Timer());
     }
     private void Update()
     {
@@ -44,7 +47,7 @@ public class QuestManager : MonoBehaviour
             {
                 quests[i] = quest;
                 GameObject _quest = Instantiate(_questPrefab, _canvas.transform);
-                _quest.transform.localPosition = new Vector3(0, (quests.Length - i) * 20f - 40f);
+                _quest.transform.localPosition = new Vector3(0, (quests.Length - i) * 20f - 60f);
                 _quest.GetComponent<QuestText>()._quest = quest;
                 questText[i] = _quest.GetComponent<QuestText>();
                 break;
@@ -76,5 +79,16 @@ public class QuestManager : MonoBehaviour
             }
             yield return null;
         }
+    }
+    IEnumerator Timer()
+    {
+        PlayerPrefs.SetInt("Time", 900);
+        for (int i = 900; i > 0; i--)
+        {
+            yield return new WaitForSeconds(1f);
+            PlayerPrefs.SetInt("Time", i);
+        }
+        
+        SceneManager.LoadScene(2);
     }
 }
