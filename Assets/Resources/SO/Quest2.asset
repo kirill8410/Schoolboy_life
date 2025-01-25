@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e19e2f589d1c3442bfabfc93bbd190f, type: 3}
   m_Name: Quest2
   m_EditorClassIdentifier: 
-  quest: 
+  quest: "\u041F\u043E\u043B\u0438\u0442\u044C \u0446\u0432\u0435\u0442\u044B"
   isComplite: 0
