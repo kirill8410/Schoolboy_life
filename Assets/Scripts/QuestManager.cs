@@ -58,6 +58,18 @@ public class QuestManager : MonoBehaviour
     {
         questText[questNumber].ChangeActive();
         quests[questNumber].isComplite = true;
+        int a = 0;
+        foreach (Quest q in Resources.LoadAll<Quest>("SO"))
+        {
+            if (q.isComplite)
+            {
+                a++;
+            }
+        }
+        if (a == 3)
+        {
+            SceneManager.LoadScene(2);
+        }
     }
 
     IEnumerator AButton()

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Quest2
   m_EditorClassIdentifier: 
   quest: "\u041F\u043E\u043B\u0438\u0442\u044C \u0446\u0432\u0435\u0442\u044B"
-  isComplite: 0
+  isComplite: 1
