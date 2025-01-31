@@ -61,7 +61,6 @@ public class Inventory : MonoBehaviour
             {
                 if (coins - item.Price >= 0)
                 {
-                    print(item.Price);
                     coins -= item.Price;
                     GameObject _products = Instantiate(_productPrefab, _content.transform);
                     _products.transform.localPosition = new Vector3(0, ((i * -30f) - 30f), 0);
