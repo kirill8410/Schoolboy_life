@@ -58,15 +58,15 @@ public class QuestManager : MonoBehaviour
     {
         questText[questNumber].ChangeActive();
         quests[questNumber].isComplite = true;
-        int a = 0;
+        bool a = true;
         foreach (Quest q in Resources.LoadAll<Quest>("SO"))
         {
-            if (q.isComplite)
+            if (!q.isComplite)
             {
-                a++;
+                a = false;
             }
         }
-        if (a == 3)
+        if (a)
         {
             SceneManager.LoadScene(2);
         }
