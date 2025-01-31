@@ -11,11 +11,27 @@ public class Cassa : MonoBehaviour
     {
         foreach (Product p in inventory.products)
         {
-            for (int i = 1; i <= 5; i++)
+            if (p != null)
             {
-                if (p.item == Resources.Load<Item>($"Products/Item{i}"))
+                if (p.item.TextName == "Яица")
                 {
-                    _isComplite[i-1] = true;
+                    _isComplite[0] = true;
+                }
+                else if (p.item.TextName == "Молоко")
+                {
+                    _isComplite[1] = true;
+                }
+                else if (p.item.TextName == "Хлеб")
+                {
+                    _isComplite[2] = true;
+                }
+                else if (p.item.TextName == "Варенье")
+                {
+                    _isComplite[3] = true;
+                }
+                else if (p.item.TextName == "Шоколад")
+                {
+                    _isComplite[4] = true;
                 }
             }
         }
