@@ -22,7 +22,7 @@ public class Menu : MonoBehaviour
                     a++;
                 }
             }
-            _quests.text = $"Заданий Выполнено: {a}/{Resources.LoadAll<Quest>("SO").Length}";
+            _quests.text = $"Заданий Выполнено: {a}/3";
         }
     }
 

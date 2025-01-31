@@ -9,9 +9,9 @@ public class Mother : MonoBehaviour
     NPCConversation _NC;
     QuestManager _QM;
     NearFarInteractor[] _NF;
-    bool[] _isDialogues = new bool[2] {false, false};
+    [SerializeField] bool[] _isDialogues = new bool[2] {false, false};
     [SerializeField] Transform teleport;
-    XROrigin _player;
+    XROrigin player;
 
     private void Start()
     {
@@ -23,19 +23,8 @@ public class Mother : MonoBehaviour
     {
         if (other.GetComponent<XROrigin>() != null)
         {
-            _player = other.GetComponent<XROrigin>();
-            if (Resources.Load<Quest>("SO/Quest1").isComplite && !_isDialogues[0])
-            {
-                _NF = GameObject.FindObjectsByType<NearFarInteractor>(FindObjectsSortMode.None);
-                foreach (NearFarInteractor N in _NF)
-                {
-                    N.enableFarCasting = true;
-                }
-                ConversationManager.Instance.StartConversation(_NC);
-                _isDialogues[0] = true;
-                _isDialogues[1] = false;
-                _NC = _NCs[1];
-            }
+            player = other.GetComponent<XROrigin>();
+
             if (Resources.Load<Quest>("SO/Quest2").isComplite && Resources.Load<Quest>("SO/Quest3").isComplite && !_isDialogues[1])
             {
                 _NF = GameObject.FindObjectsByType<NearFarInteractor>(FindObjectsSortMode.None);
@@ -46,6 +35,18 @@ public class Mother : MonoBehaviour
                 ConversationManager.Instance.StartConversation(_NC);
                 _isDialogues[1] = true;
             }
+            else if (Resources.Load<Quest>("SO/Quest1").isComplite && !_isDialogues[0])
+            {
+                _NF = GameObject.FindObjectsByType<NearFarInteractor>(FindObjectsSortMode.None);
+                foreach (NearFarInteractor N in _NF)
+                {
+                    N.enableFarCasting = true;
+                }
+                ConversationManager.Instance.StartConversation(_NC);
+                _isDialogues[0] = true;
+                _NC = _NCs[1];
+            }
+            
         }
     }
 
@@ -66,6 +67,6 @@ public class Mother : MonoBehaviour
         {
             N.enableFarCasting = false;
         }
-        _player.gameObject.transform.position = teleport.position;
+        player.transform.position = teleport.position;
     }
 }

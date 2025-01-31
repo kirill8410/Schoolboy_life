@@ -1,16 +1,23 @@
+using TMPro;
 using UnityEngine;
 
 public class Product : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public Item item;
+    TextMeshProUGUI text;
+
+    private void Start()
     {
-        
+        text = GetComponentInChildren<TextMeshProUGUI>();
+        if (item != null)
+        {
+            text.text = item.TextName;
+        }
+        else
+        {
+            text.text = "---";
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
