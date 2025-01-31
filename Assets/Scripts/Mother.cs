@@ -9,7 +9,8 @@ public class Mother : MonoBehaviour
     NPCConversation _NC;
     QuestManager _QM;
     NearFarInteractor[] _NF;
-    bool[] _isDialogues = new bool[2] {false, false} ;
+    bool[] _isDialogues = new bool[2] {false, false};
+
 
     private void Start()
     {
@@ -21,6 +22,7 @@ public class Mother : MonoBehaviour
     {
         if (other.GetComponent<XROrigin>() != null)
         {
+
             if (Resources.Load<Quest>("SO/Quest1").isComplite && !_isDialogues[0])
             {
                 _NF = GameObject.FindObjectsByType<NearFarInteractor>(FindObjectsSortMode.None);
@@ -63,5 +65,6 @@ public class Mother : MonoBehaviour
         {
             N.enableFarCasting = false;
         }
+
     }
 }
