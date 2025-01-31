@@ -8,7 +8,6 @@ public class StakanWater : MonoBehaviour
     [SerializeField] GameObject water_part;
     [SerializeField] GameObject water_ist;
     [SerializeField] GameObject water_;
-    [SerializeField] GameObject water_col;
     [SerializeField] int _type;
     [SerializeField] GameObject TargetObj;
     private QuestManager _actionTarget; //замени SomeMonoBehavior  на название скрипта
