@@ -10,7 +10,8 @@ public class Mother : MonoBehaviour
     QuestManager _QM;
     NearFarInteractor[] _NF;
     bool[] _isDialogues = new bool[2] {false, false};
-
+    [SerializeField] Transform teleport;
+    XROrigin _player;
 
     private void Start()
     {
@@ -22,7 +23,7 @@ public class Mother : MonoBehaviour
     {
         if (other.GetComponent<XROrigin>() != null)
         {
-
+            _player = other.GetComponent<XROrigin>();
             if (Resources.Load<Quest>("SO/Quest1").isComplite && !_isDialogues[0])
             {
                 _NF = GameObject.FindObjectsByType<NearFarInteractor>(FindObjectsSortMode.None);
@@ -65,6 +66,6 @@ public class Mother : MonoBehaviour
         {
             N.enableFarCasting = false;
         }
-
+        _player.gameObject.transform.position = teleport.position;
     }
 }
