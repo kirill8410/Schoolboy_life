@@ -6,9 +6,8 @@ public class StakanWater : MonoBehaviour
 
     public   float water;
     [SerializeField] GameObject water_part;
-    [SerializeField] GameObject water_ist;
+    [SerializeField] GameObject water_ist = null;
     [SerializeField] GameObject water_;
-    [SerializeField] GameObject water_col;
     [SerializeField] int _type;
     [SerializeField] GameObject TargetObj;
     private QuestManager _actionTarget; //замени SomeMonoBehavior  на название скрипта
@@ -19,7 +18,7 @@ public class StakanWater : MonoBehaviour
     }
     void Update()
     {
-        if (this.transform.rotation.x > 0.5f && water > 0 || this.transform.rotation.x < -0.5f&&water>0|| this.transform.rotation.z > 0.5f && water > 0 || this.transform.rotation.z < -0.5f && water > 0)
+        if ((this.transform.rotation.x > 0.5f && water > 0 || this.transform.rotation.x < -0.5f&&water>0|| this.transform.rotation.z > 0.5f && water > 0 || this.transform.rotation.z < -0.5f && water > 0))
         {
             water_part.SetActive(true);
             water -= 10 * Time.deltaTime;
@@ -37,10 +36,15 @@ public class StakanWater : MonoBehaviour
         {
             water_part.SetActive(false);
         }
-        if ((water_ist.tag == "water"&&water<100f)||( water_ist.tag == "dogm" && water < 100f))
+        if (water_ist != null) 
         {
-            water += 10*Time.deltaTime;
+            if ((water_ist.tag == "water" && water < 100f) || (water_ist.tag == "dogm" && water < 100f) )
+            {
+                water += 10 * Time.deltaTime;
+
+            }
         }
+
         if (water > 100)
         {
             water = 100;
