@@ -34,7 +34,7 @@ public class QuestManager : MonoBehaviour
         if (_canvas.active)
         {
             _c.transform.position = _camera.transform.position;
-            _c.transform.rotation = new Quaternion(0, _camera.transform.rotation.y, 0, 0);
+            _c.transform.rotation = new Quaternion(0, _camera.transform.rotation.y, 0, _camera.transform.rotation.w);
         }
     }
 
