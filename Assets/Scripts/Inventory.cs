@@ -5,10 +5,14 @@ using UnityEngine.PlayerLoop;
 
 public class Inventory : MonoBehaviour
 {
+    [SerializeField] GameObject _productPrefab;
+    [SerializeField] GameObject _content;
     [SerializeField] Transform _c;
     [SerializeField] GameObject _camera;
     [SerializeField] private InputActionProperty _bButton;
     private GameObject _canvas;
+    private Product[] _products = new Product[10];
+
     private void Start()
     {
         _canvas = GetComponentInChildren<Canvas>().gameObject;
@@ -44,4 +48,5 @@ public class Inventory : MonoBehaviour
             yield return null;
         }
     }
+
 }
